@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native';
 import { ChevronLeft } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, spacing } from '../theme/colors';
 
 interface HeaderProps {
@@ -12,9 +13,10 @@ interface HeaderProps {
 
 export default function Header({ title, showBackButton = false, rightElement }: HeaderProps) {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top, height: 56 + insets.top }]}>
       {showBackButton ? (
         <TouchableOpacity
           style={styles.backButton}
