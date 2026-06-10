@@ -56,6 +56,7 @@ export default function CatalogScreen() {
       query === '' ||
       plant.name.toLowerCase().includes(query) ||
       plant.scientificName.toLowerCase().includes(query) ||
+      plant.category.toLowerCase().includes(query) ||
       plant.description.toLowerCase().includes(query) ||
       plant.relatedSymptoms.some(s => s.toLowerCase().includes(query));
 
