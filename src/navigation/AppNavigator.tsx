@@ -15,6 +15,8 @@ import RecipeDetailScreen from '../screens/RecipeDetailScreen';
 import SymptomResultsScreen from '../screens/SymptomResultsScreen';
 import ResponsibleUseScreen from '../screens/ResponsibleUseScreen';
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { RootStackParamList, MainTabParamList } from './types';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
@@ -31,6 +33,8 @@ function TabIcon({ Icon, color, focused }: { Icon: any; color: string; focused: 
 }
 
 function MainTabNavigator() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -42,13 +46,9 @@ function MainTabNavigator() {
           borderTopWidth: 0,
           borderTopLeftRadius: 32,
           borderTopRightRadius: 32,
-          height: Platform.OS === 'ios' ? 88 : 70,
-          paddingBottom: Platform.OS === 'ios' ? 28 : 12,
+          height: Platform.OS === 'ios' ? 88 : 64 + insets.bottom,
+          paddingBottom: Platform.OS === 'ios' ? 28 : insets.bottom + 8,
           paddingTop: 12,
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
           elevation: 20,
           shadowColor: '#496251',
           shadowOffset: { width: 0, height: -4 },
